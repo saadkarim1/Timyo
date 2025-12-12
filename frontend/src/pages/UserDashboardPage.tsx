@@ -1,7 +1,18 @@
 import { FaPlus } from "react-icons/fa";
 import AppointmentCard from "../components/AppointmentCard";
 import { TbLayoutDashboardFilled } from "react-icons/tb";
+import { useEffect, useState } from "react";
+import axiosInstance from "../utils/axiosInstance";
+import type { AppointmentType } from "../model/appointment";
 const UserDashboardPage = () => {
+	const [appointments, setAppointments] = useState<AppointmentType[]>([]);
+	useEffect(() => {
+		(async () => {
+			const appointments = await axiosInstance.get("/api/appointments");
+			console.log(appointments.data);
+			setAppointments(appointments.data);
+		})();
+	}, []);
 	return (
 		<div className='w-[85%] mx-auto '>
 			<div className='flex items-center justify-between'>
@@ -25,8 +36,8 @@ const UserDashboardPage = () => {
 					<div className='w-[25%] text-center'>Status</div>
 					<div className='w-[25%] text-center'>Actions</div>
 				</div>
-				{[1, 2, 3, 4].map((event) => (
-					<AppointmentCard />
+				{appointments?.map((appointment: AppointmentType) => (
+					<AppointmentCard key={appointment.id} appointmentData={appointment} />
 				))}
 			</div>
 			{/* {showAddEventPopup && (

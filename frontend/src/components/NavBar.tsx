@@ -37,7 +37,7 @@ const NavBar = () => {
 					<input
 						value={inputValue}
 						onChange={(e) => setInputValue(e.target.value)}
-						placeholder='gool ma333'
+						placeholder="gool 'ma333'"
 						type='text'
 						className='focus:outline-none border-[1.5px] rounded-full py-2 px-3 bg-white w-full border-green-400 mx-auto'
 					/>
