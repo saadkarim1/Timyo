@@ -19,7 +19,14 @@ const Login = () => {
 			...formData,
 			password_confirmation: formData.password,
 		});
-		console.log(res);
+		if (res.status === 200) {
+			console.log(res);
+			setFormData({
+				email: "",
+				password: "",
+				password_confirmation: "",
+			});
+		}
 	};
 
 	return (

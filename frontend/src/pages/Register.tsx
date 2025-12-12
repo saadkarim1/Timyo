@@ -20,7 +20,15 @@ const Register = () => {
 			password_confirmation: formData.password,
 		});
 
-		console.log(res);
+		if (res.status === 200) {
+			console.log(res);
+			setFormData({
+				name: "",
+				email: "",
+				password: "",
+				password_confirmation: "",
+			});
+		}
 	};
 	return (
 		<section className='h-screen w-screen  bg-[#f1f1f1] flex items-center p-6'>
